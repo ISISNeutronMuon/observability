@@ -10,6 +10,7 @@ spec:
     sectionName: http
   hostnames:
   - "observability.isis.cclrc.ac.uk"
+  - "130.246.81.219"
   rules:
   - matches:
     - path:
