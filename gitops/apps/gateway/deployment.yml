@@ -28,16 +28,16 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: ghcr.io/nginx/charts/nginx-gateway-fabric
+    repoURL: ghcr.io/nginx/charts
     targetRevision: 2.0.1
-    chart: ngf
+    chart: nginx-gateway-fabric
     helm:
       values: |
         nginx:
           service:
             loadBalancerIP: "130.246.81.219"
   destination:
-    namespace: grafana
+    namespace: nginx-gateway
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
