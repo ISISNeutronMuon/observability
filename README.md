@@ -36,7 +36,7 @@ Change the password using the user settings to the one in Keeper so everyone who
 
 Now it is time to watch the entire cluster's software deploy via ArgoCD:
 ```
-
+kubectl apply -f gitops/apps/app_of_apps/deployment.yml
 ```
 
 Once the app of apps is deployed it should deploy the gateway, gateway classes, and routing so you should be able to access the ArgoCD interface from here:
