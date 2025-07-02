@@ -5,7 +5,8 @@ metadata:
   namespace: argocd
 spec:
   parentRefs:
-  - name: argocd
+  - name: gateway
+    namespace: nginx-gateway
   hostnames:
   - "observability.isis.cclrc.ac.uk"
   rules:
