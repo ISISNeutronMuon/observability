@@ -1,0 +1,54 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 9.2.9
+    chart: grafana
+    helm:
+      values: |
+        replicas: 3
+        grafana.ini:
+          smtp:
+            enabled: true
+          server:
+            root_url: https://130.246.81.219/grafana
+          database:
+            wal: true
+        persistence:
+          enabled: true
+        serviceMonitor:
+          enabled: true
+          # tls:
+          #   - secretName: observability-tls
+          #     hosts:
+          #       - observability.isis.cclrc.ac.uk
+        sidecar:
+          alerts:
+            enabled: true
+          dashboards:
+            enabled: true
+          datasources:
+            enabled: true
+          notifiers:
+            enabled: true
+        admin:
+          existingSecret: grafana-creds
+          userKey: username
+          passwordKey: password
+        envFromSecret: grafana-creds
+  destination:
+    namespace: grafana
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true

@@ -1,0 +1,48 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-gateway-crds
+  namespace: argocd
+spec:
+  destination:
+    namespace: gateway-nginx
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: config/crd
+    repoURL: https://github.com/nginx/nginx-gateway-fabric.git
+    targetRevision: 58ab6e23505a542823ed2c03a580ebc028c7ebe7
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-gateway
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: oci://ghcr.io/nginx/charts/nginx-gateway-fabric
+    targetRevision: 2.0.1
+    chart: ngf
+    helm:
+      values: |
+        nginx:
+          service:
+            loadBalancerIP: "130.246.81.219"
+  destination:
+    namespace: grafana
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true

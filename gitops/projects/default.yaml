@@ -11,7 +11,9 @@ spec:
   - group: '*'
     kind: '*'
   sourceRepos:
-  - 'https://github.com/ISISNeutronMuon/Observability'
+  - 'https://github.com/ISISNeutronMuon/observability'
+  - 'https://grafana.github.io/helm-charts'
+  - 'https://github.com/nginx/nginx-gateway-fabric'
   destinations:
   - namespace: "*"
     server: "https://kubernetes.default.svc"
