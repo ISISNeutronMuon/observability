@@ -1,0 +1,35 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: 8.1.2
+    chart: argo-cd
+    helm:
+      values: |
+        configs:
+          params:
+            server.rootpath: argocd
+#        server:
+#          ingress:
+#            enabled: true
+#          annotations:
+#            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#            nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+#          ingressClassName: "nginx"
+#          path: /argocd
+  destination:
+    namespace: argocd
+    name: in-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
