@@ -1,2 +1,6 @@
 capi/clouds.yaml
 *.kubeconfig
+*secret.yml
+*secret.yaml
+*secrets.yml
+*secrets.yaml
