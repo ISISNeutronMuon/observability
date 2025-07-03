@@ -12,3 +12,10 @@ spec:
   - protocol: HTTPS
     port: 443
     name: https
+    # hostname:
+    #   - "observability.isis.cclrc.ac.uk"
+    # tls:
+    #   certificateRefs:
+    #   - kind: Secret
+    #     group: ""
+    #     name: observability-tls

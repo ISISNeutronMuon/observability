@@ -7,10 +7,9 @@ spec:
   parentRefs:
   - name: gateway
     namespace: nginx-gateway
-    sectionName: http
+    sectionName: https
   hostnames:
   - "observability.isis.cclrc.ac.uk"
-  - "130.246.81.219"
   rules:
   - matches:
     - path:
