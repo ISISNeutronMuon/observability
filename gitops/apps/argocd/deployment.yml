@@ -15,6 +15,18 @@ spec:
         configs:
           params:
             server.rootpath: /argocd
+        cm:
+          url: https://observability.isis.cclrc.ac.uk/argocd
+          application.instanceLabelKey: argocd.argoproj.io/instance
+        dex.config: |
+          issuer: https://observability.isis.cclrc.ac.uk/argocd/api/dex
+          storage:
+            type: memory
+          web:
+            http: 0.0.0.0:5556
+          frontend:
+            issuer: ArgoCD
+            theme: light
   destination:
     namespace: argocd
     name: in-cluster
