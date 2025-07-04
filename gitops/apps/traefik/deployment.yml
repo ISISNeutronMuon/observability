@@ -1,0 +1,56 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik-routes
+  namespace: argocd
+spec:
+  destination:
+    namespace: traefik
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: gitops/components/traefik
+    repoURL: https://github.com/ISISNeutronMuon/Observability.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://traefik.github.io/charts
+    targetRevision: 36.3.0
+    chart: traefik
+    helm:
+      values: |
+        ingressRoute:
+          dashboard:
+            enabled: true
+            matchRule: Host(`dashboard.localhost`)
+            entryPoints:
+              - web
+        providers:
+          kubernetesGateway:
+            enabled: true
+        gateway:
+          namespacePolicy: All
+  destination:
+    namespace: traefik
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
