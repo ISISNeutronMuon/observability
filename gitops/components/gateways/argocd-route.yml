@@ -16,7 +16,7 @@ spec:
             type: Exact
             value: /argocd
       filters:
-        - type: Redirect
+        - type: RequestRedirect
           redirect:
             path:
               replaceFullPath: /argocd/
