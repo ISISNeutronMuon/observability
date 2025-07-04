@@ -14,7 +14,9 @@ spec:
       values: |
         configs:
           params:
-            server.rootpath: /argocd
+            server:
+              rootpath: /argocd
+              insecure: true
         cm:
           url: https://observability.isis.cclrc.ac.uk/argocd
           application.instanceLabelKey: argocd.argoproj.io/instance
