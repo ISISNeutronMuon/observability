@@ -8,17 +8,13 @@ spec:
   project: default
   source:
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 8.1.2
+    targetRevision: 6.7.18
     chart: argo-cd
     helm:
       values: |
         configs:
           params:
-            server.insecure: true
-            server.rootpath: /argocd
-            server.basehref: /argocd
-          cm:
-            url: https://observability.isis.cclrc.ac.uk/argocd
+            server.rootpath: argocd
   destination:
     namespace: argocd
     name: in-cluster
