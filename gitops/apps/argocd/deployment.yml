@@ -13,7 +13,6 @@ spec:
     helm:
       values: |
         server:
-          insecure: true
           service:
             type: ClusterIP
 
