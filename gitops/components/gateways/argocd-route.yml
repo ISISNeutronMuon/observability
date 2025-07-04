@@ -13,14 +13,8 @@ spec:
   rules:
     - matches:
         - path:
-            type: Exact
+            type: PathPrefix
             value: /argocd
-      filters:
-        - type: RequestRedirect
-          redirect:
-            path:
-              replaceFullPath: /argocd/
-            statusCode: 301
       backendRefs:
         - name: argocd-server
-          port: 80
+          port: 443
