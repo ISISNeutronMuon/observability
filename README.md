@@ -20,7 +20,7 @@ This section assumes that you have the context setup appropriately in the Kubeco
 Install ArgoCD:
 ```shell
 kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+helm install argocd oci://ghcr.io/argoproj/argo-helm/argo-cd --version 8.1.2 -n argocd
 ```
 
 Setup ArgoCD CLI: https://argo-cd.readthedocs.io/en/stable/getting_started/#2-download-argo-cd-cli
