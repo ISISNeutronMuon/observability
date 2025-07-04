@@ -12,13 +12,10 @@ spec:
     chart: argo-cd
     helm:
       values: |
-        server:
-          service:
-            type: ClusterIP
-
         configs:
           params:
             server.rootpath: /argocd
+            server.basehref: /argocd
           cm:
             url: https://observability.isis.cclrc.ac.uk/argocd
   destination:
