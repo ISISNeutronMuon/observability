@@ -5,16 +5,16 @@ metadata:
   namespace: argocd
 spec:
   parentRefs:
-  - name: gateway
-    namespace: nginx-gateway
-    sectionName: https
+    - name: gateway
+      namespace: nginx-gateway
+      sectionName: https
   hostnames:
-  - "observability.isis.cclrc.ac.uk"
+    - "observability.isis.cclrc.ac.uk"
   rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /argocd
-    backendRefs:
-    - name: argocd-server
-      port: 80
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /argocd
+      backendRefs:
+        - name: argocd-server
+          port: 80

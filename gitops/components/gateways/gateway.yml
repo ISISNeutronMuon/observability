@@ -6,17 +6,17 @@ metadata:
 spec:
   gatewayClassName: nginx
   listeners:
-  - protocol: HTTP
-    port: 80
-    name: http
-    hostname: "observability.isis.cclrc.ac.uk"
-  - protocol: HTTPS
-    port: 443
-    name: https
-    hostname: "observability.isis.cclrc.ac.uk"
-    tls:
-      mode: Terminate
-      certificateRefs:
-      - kind: Secret
-        group: ""
-        name: observability-isis-tls
+    - name: http
+      protocol: HTTP
+      port: 80
+      hostname: "observability.isis.cclrc.ac.uk"
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: "observability.isis.cclrc.ac.uk"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: observability-isis-tls
+            group: ""
