@@ -5,6 +5,8 @@ metadata:
   namespace: envoy-gateway-system
 spec:
   gatewayClassName: envoy-gateway
+  addresses:
+    - value: 130.246.81.219
   listeners:
   - name: argo-cd
     port: 80
