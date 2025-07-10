@@ -16,6 +16,7 @@ spec:
           params:
             server.basehref: /argocd
             server.rootpath: argocd
+            server.insecure: "true"
   destination:
     namespace: argocd
     name: in-cluster
