@@ -58,6 +58,7 @@ https://observability.isis.rl.ac.uk forwards to the Grafana endpoint as that is 
 
 Cluster consists of several components notably:
 - Grafana - Alerting and dashboarding
+    - Backed by a PostgreSQL DB maintained by DB Services
 - Loki - Storage of logs
 - Tempo - Storage of traces
 - Mimir - Storage of metrics
