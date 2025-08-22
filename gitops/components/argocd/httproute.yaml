@@ -9,7 +9,7 @@ spec:
     namespace: envoy-gateway-system
     sectionName: https-argocd
   hostnames:
-    - "argocd.observability.isis.rl.ac.uk"
+    - "argo.observability.isis.rl.ac.uk"
   rules:
   - matches:
     - path:

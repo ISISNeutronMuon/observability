@@ -17,7 +17,7 @@ spec:
   - name: http-argocd
     port: 80
     protocol: HTTP
-    hostname: argocd.observability.isis.rl.ac.uk
+    hostname: argo.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
         from: Selector
@@ -27,7 +27,7 @@ spec:
   - name: https-argocd
     port: 443
     protocol: HTTPS
-    hostname: argocd.observability.isis.rl.ac.uk
+    hostname: argo.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
         from: Selector
