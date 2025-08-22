@@ -5,8 +5,14 @@ metadata:
   namespace: envoy-gateway-system
 spec:
   gatewayClassName: envoy-gateway
+  infrastructure:
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: proxy
   addresses:
-    - value: 130.246.81.219
+    - type: IPAddress
+      value: 130.246.83.9
   listeners:
   - name: http-argocd
     port: 80
