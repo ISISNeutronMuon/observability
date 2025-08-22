@@ -8,7 +8,12 @@ spec:
     - name: envoy-gateway
       sectionName: http
   hostnames:
-    - "observability.isis.cclrc.ac.uk"
+    - "observability.isis.rl.ac.uk"
+    - "grafana.observability.isis.rl.ac.uk"
+    - "argocd.observability.isis.rl.ac.uk"
+    - "loki.observability.isis.rl.ac.uk"
+    - "mimir.observability.isis.rl.ac.uk"
+    - "tempo.observability.isis.rl.ac.uk"
   rules:
     - filters:
         - type: RequestRedirect

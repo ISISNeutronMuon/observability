@@ -8,39 +8,51 @@ spec:
   addresses:
     - value: 130.246.81.219
   listeners:
-  - name: http-argo
+  - name: http-argocd
     port: 80
     protocol: HTTP
     hostname: argocd.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: argocd
-  - name: argo-cd
+        from: Selector
+        selector:
+          matchLabels:
+            kubernetes.io/metadata.name: argocd
+  - name: https-argocd
     port: 443
     protocol: HTTPS
     hostname: argocd.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: argocd
+        from: Selector
+        selector:
+          matchLabels:
+            kubernetes.io/metadata.name: argocd
     tls:
       certificateRefs:
         - group: ""
           kind: Secret
           name: argo-observability-isis-rl-ac-uk
-  - name: http
+  - name: http-observability
     port: 80
     protocol: HTTP
     hostname: observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: grafana
-  - name: https
+        from: Selector
+        selector:
+          matchLabels:
+            kubernetes.io/metadata.name: grafana
+  - name: https-observability
     port: 443
     protocol: HTTPS
     hostname: observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: grafana
+        from: Selector
+        selector:
+          matchLabels:
+            kubernetes.io/metadata.name: grafana
     tls:
       certificateRefs:
         - group: ""
@@ -52,14 +64,20 @@ spec:
     hostname: grafana.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: grafana
-  - name: https-rafana
+        from: Selector
+        selector:
+          matchLabels:
+            kubernetes.io/metadata.name: grafana
+  - name: https-grafana
     port: 443
     protocol: HTTPS
     hostname: grafana.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: grafana
+        from: Selector
+        selector:
+          matchLabels:
+            kubernetes.io/metadata.name: grafana
     tls:
       certificateRefs:
         - group: ""
