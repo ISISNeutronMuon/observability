@@ -7,17 +7,14 @@ spec:
   parentRefs:
   - name: envoy-gateway
     namespace: envoy-gateway-system
+    sectionName: https-argocd
+  hostnames:
+    - "argocd.observability.isis.rl.ac.uk"
   rules:
   - matches:
     - path:
         type: PathPrefix
-        value: /argocd
-    filters:
-      - type: URLRewrite
-        urlRewrite:
-          path:
-            type: ReplacePrefixMatch
-            replacePrefixMatch: /
+        value: /
     backendRefs:
     - name: argocd-server
-      port: 443
+      port: 80
