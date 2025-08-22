@@ -12,7 +12,7 @@ spec:
     name: proxy
   addresses:
     - type: IPAddress
-      value: 130.246.83.9
+      value: 130.246.81.219
   listeners:
   - name: http-argocd
     port: 80
