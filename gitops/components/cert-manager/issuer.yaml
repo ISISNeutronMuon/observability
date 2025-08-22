@@ -1,0 +1,25 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt
+  namespace: envoy-gateway-system
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: samuel.jones@stfc.ac.uk
+    # The ACME certificate profile
+    profile: tlsserver
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt
+    # Enable the HTTP-01 challenge provider
+    solvers:
+      - http01:
+          gatewayHTTPRoute:
+            parentRefs:
+              - group: gateway.networking.k8s.io
+                name: eg
+                namespace: envoy-gateway-system
+                kind: Gateway

@@ -8,22 +8,60 @@ spec:
   addresses:
     - value: 130.246.81.219
   listeners:
-  - name: argo-cd
+  - name: http-argo
     port: 80
     protocol: HTTP
-    hostname: observability.isis.cclrc.ac.uk
+    hostname: argocd.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: All
+        from: argocd
   - name: argo-cd
     port: 443
     protocol: HTTPS
-    hostname: observability.isis.cclrc.ac.uk
+    hostname: argocd.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: All
+        from: argocd
     tls:
       certificateRefs:
         - group: ""
           kind: Secret
-          name: observability-isis-tls
+          name: argo-observability-isis-rl-ac-uk
+  - name: http
+    port: 80
+    protocol: HTTP
+    hostname: observability.isis.rl.ac.uk
+    allowedRoutes:
+      namespaces:
+        from: grafana
+  - name: https
+    port: 443
+    protocol: HTTPS
+    hostname: observability.isis.rl.ac.uk
+    allowedRoutes:
+      namespaces:
+        from: grafana
+    tls:
+      certificateRefs:
+        - group: ""
+          kind: Secret
+          name: observability-isis-rl-ac-uk
+  - name: http-grafana
+    port: 80
+    protocol: HTTP
+    hostname: grafana.observability.isis.rl.ac.uk
+    allowedRoutes:
+      namespaces:
+        from: grafana
+  - name: https-rafana
+    port: 443
+    protocol: HTTPS
+    hostname: grafana.observability.isis.rl.ac.uk
+    allowedRoutes:
+      namespaces:
+        from: grafana
+    tls:
+      certificateRefs:
+        - group: ""
+          kind: Secret
+          name: grafana-observability-isis-rl-ac-uk

@@ -40,7 +40,19 @@ kubectl apply -f gitops/apps/app_of_apps/deployment.yml
 ```
 
 Once the app of apps is deployed it should deploy the gateway, gateway classes, and routing so you should be able to access the ArgoCD interface from here:
-TBD URL/argocd.
+https://argocd.observability.isis.rl.ac.uk.
+
+## Elements that are available from this cluster:
+
+ArgoCD: https://argocd.observability.isis.rl.ac.uk
+
+Planned (not implemented):
+- Grafana: https://grafana.observability.isis.rl.ac.uk
+- Loki: https://loki.observability.isis.rl.ac.uk
+- Mimir: https://mimir.observability.isis.rl.ac.uk
+- Tempo: https://tempo.observability.isis.rl.ac.uk
+
+https://observability.isis.rl.ac.uk forwards to the Grafana endpoint as that is the most likely interacted with.
 
 ## Design of the cluster
 

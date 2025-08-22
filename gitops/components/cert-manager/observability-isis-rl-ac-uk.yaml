@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: observability-isis-rl-ac-uk
+  namespace: envoy-gateway-system
+spec:
+  secretName: observability-isis-rl-ac-uk
+  issuerRef:
+    name: letsencrypt
+  subject:
+    organizations:
+      - UK Research and Innovation
+    countries:
+      - GB
+    provinces:
+      - Wiltshire
+    serialNumber: Government Entity
+  dnsNames:
+  - observability.isis.rl.ac.uk

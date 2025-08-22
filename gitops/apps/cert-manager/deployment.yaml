@@ -1,20 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: envoy-gateway
+  name: cert-manager
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-10"
 spec:
   project: default
-  source:
-    chart: gateway-helm
-    repoURL: docker.io/envoyproxy
-    targetRevision: v1.4.2
-    helm:
-      releaseName: envoy-gateway
+  sources:
+    - repoURL: https://charts.jetstack.io
+      chart: cert-manager
+      targetRevision: v1.18.2
+      helm:
+        valueFiles:
+        - $values/gitops/apps/cert-manager/values.yaml
+    - repoURL: https://github.com/ISISNeutronMuon/Observability
+      targetRevision: HEAD
+      ref: values
   destination:
-    namespace: envoy-gateway-system
+    namespace: cert-manager
     server: https://kubernetes.default.svc
   syncPolicy:
     syncOptions:
@@ -27,15 +31,15 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: gateway-api
+  name: cert-manager-certificates
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   source:
-    path: gitops/components/envoy
-    repoURL: https://github.com/ISISNeutronMuon/Observability.git
+    path: gitops/components/cert-manager
+    repoURL: https://github.com/ISISNeutronMuon/Observability
     targetRevision: HEAD
   destination:
     namespace: envoy-gateway-system
@@ -43,6 +47,7 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
+    - ServerSideApply=true
     automated:
       prune: true
       selfHeal: true

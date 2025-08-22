@@ -13,7 +13,8 @@ spec:
   sourceRepos:
   - 'https://github.com/ISISNeutronMuon/observability'
   - 'https://grafana.github.io/helm-charts'
-  - 'https://github.com/nginx/nginx-gateway-fabric'
+  - 'https://argoproj.github.io/argo-helm'
+  - 'https://charts.jetstack.io'
   - 'https://github.com/kubernetes-sigs/gateway-api.git'
   destinations:
   - namespace: "*"
