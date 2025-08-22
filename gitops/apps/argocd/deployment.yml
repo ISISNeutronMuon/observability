@@ -14,8 +14,6 @@ spec:
       values: |
         configs:
           params:
-            server.basehref: /argocd
-            server.rootpath: argocd
             server.insecure: "true"
   destination:
     namespace: argocd
