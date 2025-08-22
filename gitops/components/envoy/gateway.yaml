@@ -6,10 +6,10 @@ metadata:
 spec:
   gatewayClassName: envoy-gateway
   infrastructure:
-  parametersRef:
-    group: gateway.envoyproxy.io
-    kind: EnvoyProxy
-    name: proxy
+    parametersRef:
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: proxy
   addresses:
     - type: IPAddress
       value: 130.246.81.219
