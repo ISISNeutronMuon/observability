@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: observability-isis-rl-ac-uk
   issuerRef:
-    name: letsencrypt
+    name: letsencrypt-staging
   subject:
     organizations:
       - UK Research and Innovation
