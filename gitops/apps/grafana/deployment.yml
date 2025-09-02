@@ -69,12 +69,12 @@ spec:
     repoURL: https://github.com/ISISNeutronMuon/Observability
     targetRevision: HEAD
   destination:
-    namespace: envoy-gateway-system
+    namespace: grafana
     server: https://kubernetes.default.svc
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
