@@ -17,7 +17,6 @@ spec:
         defaultVaultConnection:
           enabled: true
           address: "https://secrets.isis.rl.ac.uk"
-          skipTLSVerify: true
   destination:
     namespace: vault-op
     server: https://kubernetes.default.svc
