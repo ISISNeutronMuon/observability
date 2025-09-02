@@ -6,5 +6,7 @@ spec:
   provider:
     type: Kubernetes
     kubernetes:
+      envoyDeployment:
+        replicas: 3
       envoyService:
         loadBalancerIP: 130.246.81.219
