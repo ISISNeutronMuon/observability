@@ -2,7 +2,7 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
   name: grafana-creds
-  namespace: grafana
+  namespace: vault-op
 spec:
   type: kv-v2
   refreshAfter: 30s
@@ -13,4 +13,5 @@ spec:
   path: grafana/creds
   destination:
     name: grafana-creds
+    namespace: grafana
     create: true
