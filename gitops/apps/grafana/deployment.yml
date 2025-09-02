@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: grafana
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
   source:
@@ -17,17 +19,17 @@ spec:
           smtp:
             enabled: true
           server:
-            root_url: https://130.246.81.219/grafana
+            root_url: https://grafana.observability.isis.rl.ac.uk/
           database:
+            type: postgres
+            host: ${}
+            name: ${}
+            user: ${}
             wal: true
         persistence:
           enabled: true
         serviceMonitor:
           enabled: true
-          # tls:
-          #   - secretName: observability-tls
-          #     hosts:
-          #       - observability.isis.cclrc.ac.uk
         sidecar:
           alerts:
             enabled: true
@@ -52,3 +54,27 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-config
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+  source:
+    path: gitops/components/grafana
+    repoURL: https://github.com/ISISNeutronMuon/Observability
+    targetRevision: HEAD
+  destination:
+    namespace: envoy-gateway-system
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    automated:
+      prune: true
+      selfHeal: true
