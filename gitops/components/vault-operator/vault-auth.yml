@@ -3,7 +3,7 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultAuth
 metadata:
   name: static-auth
-  namespace: grafana
+  namespace: vault-op
 spec:
   method: kubernetes
   mount: kubernetes
