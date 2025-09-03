@@ -16,7 +16,7 @@ spec:
       values: |
         defaultVaultConnection:
           enabled: true
-          address: "https://eogifbgnzeucuds.m.pipedream.net/"
+          address: "https://secrets.isis.rl.ac.uk"
   destination:
     namespace: vault-op
     server: https://kubernetes.default.svc
