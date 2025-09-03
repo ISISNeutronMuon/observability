@@ -20,20 +20,14 @@ spec:
     hostname: argo.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: Selector
-        selector:
-          matchLabels:
-            kubernetes.io/metadata.name: argocd
+        from: All
   - name: https-argocd
     port: 443
     protocol: HTTPS
     hostname: argo.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: Selector
-        selector:
-          matchLabels:
-            kubernetes.io/metadata.name: argocd
+        from: All
     tls:
       certificateRefs:
         - group: ""
@@ -45,20 +39,14 @@ spec:
     hostname: observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: Selector
-        selector:
-          matchLabels:
-            kubernetes.io/metadata.name: grafana
+        from: All
   - name: https-observability
     port: 443
     protocol: HTTPS
     hostname: observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: Selector
-        selector:
-          matchLabels:
-            kubernetes.io/metadata.name: grafana
+        from: All
     tls:
       certificateRefs:
         - group: ""
@@ -70,20 +58,14 @@ spec:
     hostname: grafana.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: Selector
-        selector:
-          matchLabels:
-            kubernetes.io/metadata.name: grafana
+        from: All
   - name: https-grafana
     port: 443
     protocol: HTTPS
     hostname: grafana.observability.isis.rl.ac.uk
     allowedRoutes:
       namespaces:
-        from: Selector
-        selector:
-          matchLabels:
-            kubernetes.io/metadata.name: grafana
+        from: All
     tls:
       certificateRefs:
         - group: ""
