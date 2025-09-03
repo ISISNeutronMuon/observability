@@ -11,7 +11,7 @@ spec:
   allowedNamespaces:
     - "*"
   kubernetes:
-    role: vault_operator_super_admin
+    role: cluster
     serviceAccount: vault-op
     audiences:
       - vault
