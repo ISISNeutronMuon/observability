@@ -7,7 +7,7 @@ metadata:
 spec:
   vaultConnectionRef: default
   method: kubernetes
-  mount: kubernetes
+  mount: observability
   allowedNamespaces:
     - "*"
   kubernetes:
