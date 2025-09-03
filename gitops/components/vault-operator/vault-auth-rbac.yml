@@ -31,11 +31,3 @@ subjects:
     name: vault-op
     namespace: vault-op
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: vault-op
-  namespace: vault-op
-  annotations:
-    kubernetes.io/service-account.name: vault-op
-type: kubernetes.io/service-account-token
