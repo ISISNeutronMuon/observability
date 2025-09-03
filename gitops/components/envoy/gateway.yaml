@@ -15,9 +15,6 @@ spec:
     port: 80
     protocol: HTTP
     hostname: argo.observability.isis.rl.ac.uk
-    allowedRoutes:
-      namespaces:
-        from: All
   - name: https-argocd
     port: 443
     protocol: HTTPS
@@ -34,9 +31,6 @@ spec:
 #    port: 80
 #    protocol: HTTP
 #    hostname: observability.isis.rl.ac.uk
-#    allowedRoutes:
-#      namespaces:
-#        from: All
 #  - name: https-observability
 #    port: 443
 #    protocol: HTTPS
@@ -53,9 +47,6 @@ spec:
 #    port: 80
 #    protocol: HTTP
 #    hostname: grafana.observability.isis.rl.ac.uk
-#    allowedRoutes:
-#      namespaces:
-#        from: All
 #  - name: https-grafana
 #    port: 443
 #    protocol: HTTPS
