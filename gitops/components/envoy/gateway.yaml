@@ -10,9 +10,6 @@ spec:
       group: gateway.envoyproxy.io
       kind: EnvoyProxy
       name: proxy
-  addresses:
-    - type: IPAddress
-      value: 130.246.81.219
   listeners:
   - name: http-argocd
     port: 80
@@ -28,11 +25,11 @@ spec:
     allowedRoutes:
       namespaces:
         from: All
-    tls:
-      certificateRefs:
-        - group: ""
-          kind: Secret
-          name: argo-observability-isis-rl-ac-uk
+#    tls:
+#      certificateRefs:
+#        - group: ""
+#          kind: Secret
+#          name: argo-observability-isis-rl-ac-uk
 #  - name: http-observability
 #    port: 80
 #    protocol: HTTP
