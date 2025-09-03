@@ -6,7 +6,11 @@ metadata:
 spec:
   parentRefs:
     - name: envoy-gateway
-      sectionName: http
+      sectionName: http-argocd
+    - name: envoy-gateway
+      sectionName: http-grafana
+    - name: envoy-gateway
+      sectionName: http-observability
   hostnames:
 #    - "observability.isis.rl.ac.uk"
 #    - "grafana.observability.isis.rl.ac.uk"
