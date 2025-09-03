@@ -9,7 +9,7 @@ spec:
   method: kubernetes
   mount: kubernetes
   allowedNamespaces:
-    - *
+    - "*"
   kubernetes:
     role: vault_operator_super_admin
     serviceAccount: vault-op
