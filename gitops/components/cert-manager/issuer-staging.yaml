@@ -20,6 +20,6 @@ spec:
           gatewayHTTPRoute:
             parentRefs:
               - group: gateway.networking.k8s.io
-                name: eg
+                name: envoy-gateway
                 namespace: envoy-gateway-system
                 kind: Gateway
