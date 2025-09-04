@@ -12,11 +12,6 @@ spec:
     repoURL: https://helm.releases.hashicorp.com
     targetRevision: 0.10.0
     chart: vault-secrets-operator
-    helm:
-      values: |
-        defaultVaultConnection:
-          enabled: true
-          address: "https://secrets.isis.rl.ac.uk"
   destination:
     namespace: vault-op
     server: https://kubernetes.default.svc
