@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: grafana-observability-isis-rl-ac-uk
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt
   subject:
     organizations:
       - UK Research and Innovation
