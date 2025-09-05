@@ -23,8 +23,6 @@ spec:
           database:
             type: postgres
             wal: true
-        persistence:
-          enabled: true
         serviceMonitor:
           enabled: false # Temporarily disabled until Alloy is deployed correctly.
         sidecar:
