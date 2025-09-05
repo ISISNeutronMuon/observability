@@ -1,25 +1,25 @@
-#apiVersion: gateway.networking.k8s.io/v1
-#kind: HTTPRoute
-#metadata:
-#  name: tls-redirect
-#  namespace: envoy-gateway-system
-#spec:
-#  parentRefs:
-#    - name: envoy-gateway
-#      sectionName: http-argocd
-#    - name: envoy-gateway
-#      sectionName: http-grafana
-#    - name: envoy-gateway
-#      sectionName: http-observability
-#  hostnames:
-##    - "observability.isis.rl.ac.uk"
-##    - "grafana.observability.isis.rl.ac.uk"
-#    - "argo.observability.isis.rl.ac.uk"
-##    - "loki.observability.isis.rl.ac.uk"
-##    - "mimir.observability.isis.rl.ac.uk"
-##    - "tempo.observability.isis.rl.ac.uk"
-#  rules:
-#    - filters:
-#        - type: RequestRedirect
-#          requestRedirect:
-#            scheme: https
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: tls-redirect
+  namespace: envoy-gateway-system
+spec:
+  parentRefs:
+    - name: envoy-gateway
+      sectionName: http-argocd
+    - name: envoy-gateway
+      sectionName: http-grafana
+    - name: envoy-gateway
+      sectionName: http-observability
+  hostnames:
+    - "observability.isis.rl.ac.uk"
+    - "grafana.observability.isis.rl.ac.uk"
+    - "argo.observability.isis.rl.ac.uk"
+#    - "loki.observability.isis.rl.ac.uk"
+#    - "mimir.observability.isis.rl.ac.uk"
+#    - "tempo.observability.isis.rl.ac.uk"
+  rules:
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https

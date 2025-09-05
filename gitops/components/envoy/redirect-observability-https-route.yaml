@@ -1,24 +1,24 @@
-#apiVersion: gateway.networking.k8s.io/v1
-#kind: HTTPRoute
-#metadata:
-#  name: observability-redirect
-#  namespace: envoy-gateway-system
-#spec:
-#  parentRefs:
-#    - name: envoy-gateway
-#  hostnames:
-#    - "observability.isis.rl.ac.uk"
-#  rules:
-#    - matches:
-#        - path:
-#            type: PathPrefix
-#            value: "/"
-#      filters:
-#        - type: RequestRedirect
-#          requestRedirect:
-#            hostname: "grafana.observability.isis.rl.ac.uk"
-#            scheme: "https"
-#            statusCode: 301
-#            path:
-#              type: ReplacePrefixMatch
-#              replacePrefixMatch: "/"
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: observability-redirect
+  namespace: envoy-gateway-system
+spec:
+  parentRefs:
+    - name: envoy-gateway
+  hostnames:
+    - "observability.isis.rl.ac.uk"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: "/"
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            hostname: "grafana.observability.isis.rl.ac.uk"
+            scheme: "https"
+            statusCode: 301
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: "/"

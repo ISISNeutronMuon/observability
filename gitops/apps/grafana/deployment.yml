@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 9.2.9
+    targetRevision: 9.4.4
     chart: grafana
     helm:
       values: |
@@ -22,9 +22,6 @@ spec:
             root_url: https://grafana.observability.isis.rl.ac.uk/
           database:
             type: postgres
-            host: ${}
-            name: ${}
-            user: ${}
             wal: true
         persistence:
           enabled: true

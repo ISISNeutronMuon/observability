@@ -27,35 +27,35 @@ spec:
         - group: ""
           kind: Secret
           name: argo-observability-isis-rl-ac-uk
-#  - name: http-observability
-#    port: 80
-#    protocol: HTTP
-#    hostname: observability.isis.rl.ac.uk
-#  - name: https-observability
-#    port: 443
-#    protocol: HTTPS
-#    hostname: observability.isis.rl.ac.uk
-#    allowedRoutes:
-#      namespaces:
-#        from: All
-#    tls:
-#      certificateRefs:
-#        - group: ""
-#          kind: Secret
-#          name: observability-isis-rl-ac-uk
-##  - name: http-grafana
-#    port: 80
-#    protocol: HTTP
-#    hostname: grafana.observability.isis.rl.ac.uk
-#  - name: https-grafana
-#    port: 443
-#    protocol: HTTPS
-#    hostname: grafana.observability.isis.rl.ac.uk
-#    allowedRoutes:
-#      namespaces:
-#        from: All
-#    tls:
-#      certificateRefs:
-#        - group: ""
-#          kind: Secret
-#          name: grafana-observability-isis-rl-ac-uk
+  - name: http-observability
+    port: 80
+    protocol: HTTP
+    hostname: observability.isis.rl.ac.uk
+  - name: https-observability
+    port: 443
+    protocol: HTTPS
+    hostname: observability.isis.rl.ac.uk
+    allowedRoutes:
+      namespaces:
+        from: All
+    tls:
+      certificateRefs:
+        - group: ""
+          kind: Secret
+          name: observability-isis-rl-ac-uk
+  - name: http-grafana
+    port: 80
+    protocol: HTTP
+    hostname: grafana.observability.isis.rl.ac.uk
+  - name: https-grafana
+    port: 443
+    protocol: HTTPS
+    hostname: grafana.observability.isis.rl.ac.uk
+    allowedRoutes:
+      namespaces:
+        from: All
+    tls:
+      certificateRefs:
+        - group: ""
+          kind: Secret
+          name: grafana-observability-isis-rl-ac-uk
