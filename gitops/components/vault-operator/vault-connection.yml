@@ -1,8 +1,0 @@
----
-apiVersion: secrets.hashicorp.com/v1beta1
-kind: VaultConnection
-metadata:
-  namespace: vault-op
-  name: default
-spec:
-  address: "https://secrets.isis.rl.ac.uk"
