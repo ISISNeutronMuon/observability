@@ -26,7 +26,7 @@ spec:
         persistence:
           enabled: true
         serviceMonitor:
-          enabled: true
+          enabled: false # Temporarily disabled until Alloy is deployed correctly.
         sidecar:
           alerts:
             enabled: true
