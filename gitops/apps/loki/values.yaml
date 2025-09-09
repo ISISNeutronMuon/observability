@@ -86,7 +86,7 @@ write:
           key: S3_SECRET_ACCESS_KEY
 
 gateway:
-  enabled: false
+  enabled: true
 
 lokiCanary:
   extraArgs:
