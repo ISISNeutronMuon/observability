@@ -42,6 +42,18 @@ kubectl apply -f gitops/apps/app_of_apps/deployment.yml
 Once the app of apps is deployed it should deploy the gateway, gateway classes, and routing so you should be able to access the ArgoCD interface from here:
 https://argocd.observability.isis.rl.ac.uk.
 
+### Create the S3 for Loki (if not present)
+
+Follow the instructions here: https://stfc.atlassian.net/wiki/spaces/CLOUDKB/pages/377421872/S3+On+OpenStack
+
+You will likely have used s3cmd to create the s3 buckets before, if not, please read the document carefully. Ensure bucket location is set to RegionOne. Use the secrets defined in keeper/vault, when prompted.
+
+Create ones called the following if they do not already exist:
+loki-s3-isis-observability
+loki-ruler-s3-isis-observability
+tempo-s3-isis-observability
+mimir-s3-isis-observability
+
 ## Elements that are available from this cluster:
 
 ArgoCD: https://argocd.observability.isis.rl.ac.uk
