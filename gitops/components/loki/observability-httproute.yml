@@ -13,7 +13,6 @@ spec:
   rules:
   - matches:
     - path:
-        type: PathPrefix
         value: /observability
     backendRefs:
     - name: loki-gateway
