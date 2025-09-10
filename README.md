@@ -54,6 +54,17 @@ loki-ruler-s3-isis-observability
 tempo-s3-isis-observability
 mimir-s3-isis-observability
 
+## Creating new endpoints for new users for Loki, Tempo, and Mimir:
+
+In order to enforce multi-tenancy properly, and limiting damage in-case of leakage of credentials we use basic_auth to automatically add the correct header.
+
+- Create a basic auth secret in Vault. 
+- Create a new HTTPRoute for the endpoint they will be using. (A good example is observability-httproute.yml in Loki)
+  - It needs to Rewrite the prefix, and add a unique identifier to the header so it can handle multi-tenancy.
+- Create a new SecurityPolicy that uses the auth secret from vault. (A good example is observability-basic-auth.yaml in Loki)
+- Repeat this for the other endpoints on Tempo and Mimir as required.
+- These are now ready to be used to write to and as a data source in Grafana.
+
 ## Elements that are available from this cluster:
 
 ArgoCD: https://argocd.observability.isis.rl.ac.uk
