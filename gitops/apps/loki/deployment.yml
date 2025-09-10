@@ -15,8 +15,6 @@ spec:
     helm:
       values: |
         loki:
-          querier:
-            multi_tenant_queries_enabled: true
           compactor: 
             retention_enabled: true
             compaction_interval: 10m
@@ -45,6 +43,7 @@ spec:
             chunk_encoding: snappy
           querier:
             max_concurrent: 4
+            multi_tenant_queries_enabled: true
           pattern_ingester:
             enabled: true
           limits_config:
