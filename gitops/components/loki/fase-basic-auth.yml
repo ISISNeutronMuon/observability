@@ -1,16 +1,16 @@
-apiVersion: gateway.envoyproxy.io/v1alpha1
-kind: SecurityPolicy
-metadata:
-  name: fase-basic-auth-observability
-  namespace: loki
-spec:
-  targetRefs:
-    - group: gateway.networking.k8s.io
-      kind: HTTPRoute
-      name: loki-fase
-  basicAuth:
-    users:
-      name: "fase-basic-auth"
+#apiVersion: gateway.envoyproxy.io/v1alpha1
+#kind: SecurityPolicy
+#metadata:
+#  name: fase-basic-auth
+#  namespace: loki
+#spec:
+#  targetRefs:
+#    - group: gateway.networking.k8s.io
+#      kind: HTTPRoute
+#      name: loki-fase
+#  basicAuth:
+#    users:
+#      name: "fase-basic-auth"
 ---
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
