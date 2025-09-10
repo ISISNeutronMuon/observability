@@ -28,4 +28,4 @@ spec:
         urlRewrite:
           path:
             type: ReplacePrefixMatch
-            replacePrefixMatch: /loki/api/v1/push
+            replacePrefixMatch: /
