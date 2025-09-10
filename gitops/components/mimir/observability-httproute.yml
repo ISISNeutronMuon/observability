@@ -15,7 +15,7 @@ spec:
     - path:
         value: /observability
     backendRefs:
-    - name: mimir-gateway
+    - name: mimir-nginx
       port: 80
     filters:
       - type: RequestHeaderModifier
