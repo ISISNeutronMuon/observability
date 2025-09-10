@@ -1,16 +1,16 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
-  name: loki-basic-auth
+  name: loki-basic-auth-observability
   namespace: loki
 spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
-      name: loki
+      name: loki-observability
   basicAuth:
     users:
-      name: "basic-auth"
+      name: "observability-basic-auth"
 ---
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
@@ -24,8 +24,8 @@ spec:
 
   # Things to change:
   mount: observability
-  path: loki/basic-auth
+  path: loki/observability-basic-auth
   destination:
-    name: basic-auth
+    name: observability-basic-auth
     overwrite: true
     create: true
