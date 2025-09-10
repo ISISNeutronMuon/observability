@@ -27,4 +27,4 @@ spec:
         urlRewrite:
           path:
             type: ReplacePrefixMatch
-            replacePrefixMatch: /
+            replacePrefixMatch: /prometheus
