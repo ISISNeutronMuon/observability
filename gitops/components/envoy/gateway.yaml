@@ -75,3 +75,19 @@ spec:
         - group: ""
           kind: Secret
           name: loki-observability-isis-rl-ac-uk
+  - name: http-mimir
+    port: 80
+    protocol: HTTP
+    hostname: mimir.observability.isis.rl.ac.uk
+  - name: https-mimir
+    port: 443
+    protocol: HTTPS
+    hostname: mimir.observability.isis.rl.ac.uk
+    allowedRoutes:
+      namespaces:
+        from: All
+    tls:
+      certificateRefs:
+        - group: ""
+          kind: Secret
+          name: mimir-observability-isis-rl-ac-uk

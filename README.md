@@ -53,6 +53,7 @@ loki-s3-isis-observability
 loki-ruler-s3-isis-observability
 tempo-s3-isis-observability
 mimir-s3-isis-observability
+mimir-ruler-s3-isis-observability
 
 ## Creating new endpoints for new users for Loki, Tempo, and Mimir:
 
