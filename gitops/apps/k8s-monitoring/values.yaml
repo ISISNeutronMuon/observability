@@ -60,71 +60,71 @@ applicationObservability:
       traces:
         - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd$"))
 
-#autoInstrumentation:
-#  enabled: false
-#  beyla:
-#    config:
-#      data:
-#        discovery:
-#          services:
-#            - k8s_namespace: loki
-#            - k8s_namespace: mimir
-#            - k8s_namespace: tempo
-#            - k8s_namespace: grafana
-#            - k8s_namespace: vault-op
-#            - k8s_namespace: argocd
-#
-#clusterEvents:
-#  enabled: true
-#  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#
-#clusterMetrics:
-#  enabled: true
-#  cadvisor:
-#    metricsTuning:
-#      includeNamespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#  kube-state-metrics:
-#    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#
-#podLogs:
-#  enabled: true
-#  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#
-#profiling:
-#  enabled: false
-#  ebpf:
-#    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#  java:
-#    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#  pprof:
-#    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#
-#prometheusOperatorObjects:
-#  enabled: true
-#  probes:
-#    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#  podMonitors:
-#    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#  serviceMonitors:
-#    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
-#
-#alloy-metrics:
-#  enabled: true
-#
-#alloy-singleton:
-#  enabled: true
-#
-#alloy-logs:
-#  enabled: true
-#
-#alloy-receiver:
-#  enabled: false
-#  alloy:
-#    extraPorts:
-#      - name: otlp-grpc
-#        port: 4317
-#        targetPort: 4317
-#        protocol: TCP
-#
-#alloy-profiles:
-#  enabled: false
+autoInstrumentation:
+  enabled: false
+  beyla:
+    config:
+      data:
+        discovery:
+          services:
+            - k8s_namespace: loki
+            - k8s_namespace: mimir
+            - k8s_namespace: tempo
+            - k8s_namespace: grafana
+            - k8s_namespace: vault-op
+            - k8s_namespace: argocd
+
+clusterEvents:
+  enabled: true
+  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+
+clusterMetrics:
+  enabled: true
+  cadvisor:
+    metricsTuning:
+      includeNamespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+  kube-state-metrics:
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+
+podLogs:
+  enabled: true
+  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+
+profiling:
+  enabled: false
+  ebpf:
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+  java:
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+  pprof:
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+
+prometheusOperatorObjects:
+  enabled: true
+  probes:
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+  podMonitors:
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+  serviceMonitors:
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+
+alloy-metrics:
+  enabled: true
+
+alloy-singleton:
+  enabled: true
+
+alloy-logs:
+  enabled: true
+
+alloy-receiver:
+  enabled: false
+  alloy:
+    extraPorts:
+      - name: otlp-grpc
+        port: 4317
+        targetPort: 4317
+        protocol: TCP
+
+alloy-profiles:
+  enabled: false
