@@ -1,0 +1,219 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tempo
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 1.47.2
+    chart: tempo-distributed
+    helm:
+      values: |
+        global:
+          clusterDomain: 'cluster.local'
+        reportingEnabled: false
+        multitenancyEnabled: true
+        storage:
+          trace:
+            backend: s3
+            s3:
+              bucket: tempo-s3-isis-observability
+              endpoint: s3.echo.stfc.ac.uk
+              region: RegionOne
+              access_key: ${S3_ACCESS_KEY_ID}
+              secret_key: ${S3_SECRET_ACCESS_KEY}
+              insecure: false
+        metricsGenerator:
+          enabled: true
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: MIMIR_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mimir-auth
+                  key: MIMIR_PASSWORD
+            - name: MIMIR_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mimir-auth
+                  key: MIMIR_USERNAME
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY
+          config:
+            registry:
+              external_labels:
+                source: tempo
+                cluster: infra-v1
+            storage:
+              remote_write:
+                - url: http://mimir-nginx.mimir.svc.cluster.local/api/v1/push
+                  send_exemplars: true
+                  basic_auth:
+                    username: ${MIMIR_USERNAME}
+                    password: ${MIMIR_PASSWORD}
+                  headers:
+                    'X-Scope-OrgID': 'Observability'
+        gateway:
+          enabled: true
+        traces:
+          otlp:
+            http:
+              enabled: true
+        distributor:
+          replicas: 2
+          config:
+            log_received_spans:
+              enabled: false
+            log_discarded_spans:
+              enabled: false
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY
+
+        # Configure ingester
+        ingester:
+          config:
+            flush_all_on_shutdown: true
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY
+
+        # Configure compactor
+        compactor:
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY
+
+        # Configure querier
+        querier:
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY
+
+        # Configure query-frontend
+        queryFrontend:
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY      
+        overrides:
+          defaults:
+            metrics_generator:
+              processors:
+                - service-graphs
+                - span-metrics
+                - local-blocks
+              generate_native_histograms: both
+#        per_tenant_overrides:
+#          FASE-prod:
+#            ingestion:
+#              rate_strategy: local
+#              rate_limit_bytes: 1500000
+#              burst_size_bytes: 2000000
+#              max_traces_per_user: 10000
+#            read:
+#              max_bytes_per_tag_values_query: 50000
+#            metrics_generator:
+#              processors:
+#                - service-graphs
+#                - span-metrics
+#                - local-blocks
+#              remote_write_headers:
+#                'X-Scope-OrgID': "FASE-prod"
+  destination:
+    namespace: tempo
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tempo-config
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+  source:
+    path: gitops/components/tempo
+    repoURL: https://github.com/ISISNeutronMuon/Observability
+    targetRevision: HEAD
+  destination:
+    namespace: tempo
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true

@@ -65,6 +65,7 @@ In order to enforce multi-tenancy properly, and limiting damage in-case of leaka
 - Create a new SecurityPolicy that uses the auth secret from vault. (A good example is observability-basic-auth.yaml in Loki)
 - Repeat this for the other endpoints on Tempo and Mimir as required.
 - These are now ready to be used to write to and as a data source in Grafana.
+- For Tempo if they would like access to Trace generated metrics (service graphs, span metrics, etc) in Mimir please adjust the Tempo Deployment to facilitate that. It will need the correct remote-write-header set for example: `'X-Scope-OrgID': "Observability"`
 
 ## Elements that are available from this cluster:
 
