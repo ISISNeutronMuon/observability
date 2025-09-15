@@ -15,7 +15,7 @@ spec:
     - path:
         value: /observability
     backendRefs:
-    - name: tempo-nginx
+    - name: tempo-gateway
       port: 80
     filters:
       - type: RequestHeaderModifier
