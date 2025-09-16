@@ -154,15 +154,15 @@ spec:
                 - span-metrics
                 - local-blocks
               generate_native_histograms: both
-#per_tenant_overrides:
-#  FASE-prod:
-#    metrics_generator:
-#      processors:
-#        - service-graphs
-#        - span-metrics
-#        - local-blocks
-#      remote_write_headers:
-#        'X-Scope-OrgID': "FASE-prod"
+          per_tenant_overrides:
+            FASE-test:
+              metrics_generator:
+                processors:
+                  - service-graphs
+                  - span-metrics
+                  - local-blocks
+                remote_write_headers:
+                  'X-Scope-OrgID': "FASE-test"
   destination:
     namespace: tempo
     server: https://kubernetes.default.svc
