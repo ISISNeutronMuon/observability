@@ -46,7 +46,7 @@ annotationAutodiscovery:
   namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
 
 applicationObservability:
-  enabled: false
+  enabled: true
   receivers:
     otlp:
       grpc:
