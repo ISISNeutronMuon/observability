@@ -61,7 +61,7 @@ applicationObservability:
         - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd$"))
 
 autoInstrumentation:
-  enabled: false
+  enabled: true
   beyla:
     config:
       data:
