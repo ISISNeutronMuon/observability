@@ -16,7 +16,7 @@ destinations:
 
   - name: logs-service
     type: loki
-    url: https://loki.observability.isis.rl.ac.uk/observability/api/v1/push
+    url: https://loki.observability.isis.rl.ac.uk/observability/loki/api/v1/push
     auth:
       type: basic
       usernameKey: username
