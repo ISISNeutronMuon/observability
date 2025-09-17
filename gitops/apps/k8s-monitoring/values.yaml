@@ -43,7 +43,7 @@ destinations:
 
 annotationAutodiscovery:
   enabled: true
-  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
 
 applicationObservability:
   enabled: false
@@ -54,11 +54,11 @@ applicationObservability:
   metrics:
     filters:
       metric:
-        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd$"))
+        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system$"))
       logs:
-        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd$"))
+        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system$"))
       traces:
-        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd$"))
+        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system$"))
 
 autoInstrumentation:
   enabled: true
@@ -73,40 +73,41 @@ autoInstrumentation:
             - k8s_namespace: grafana
             - k8s_namespace: vault-op
             - k8s_namespace: argocd
+            - k8s_namespace: envoy-gateway-system
 
 clusterEvents:
   enabled: true
-  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
 
 clusterMetrics:
   enabled: true
   cadvisor:
     metricsTuning:
-      includeNamespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+      includeNamespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
   kube-state-metrics:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
 
 podLogs:
   enabled: true
-  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
 
 profiling:
   enabled: false
   ebpf:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
   java:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
   pprof:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
 
 prometheusOperatorObjects:
   enabled: true
   probes:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
   podMonitors:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
   serviceMonitors:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
 
 alloy-metrics:
   enabled: true
