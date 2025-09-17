@@ -15,8 +15,8 @@ spec:
       samplingRate: 100
       provider:
         backendRefs:
-          - name: monitoring-alloy-receiver
-            namespace: monitoring
+          - name: alloy
+            namespace: alloy
             port: 4317
         type: OpenTelemetry
       customTags:
