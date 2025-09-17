@@ -15,7 +15,7 @@ spec:
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
-  name: basic-auth
+  name: observability-basic-auth
   namespace: tempo
 spec:
   type: kv-v2
