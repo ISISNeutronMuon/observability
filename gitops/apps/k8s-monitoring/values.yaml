@@ -51,6 +51,8 @@ applicationObservability:
     otlp:
       grpc:
         enabled: true
+      http:
+        enabled: true
   metrics:
     filters:
       metric:
