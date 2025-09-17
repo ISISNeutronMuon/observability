@@ -7,5 +7,5 @@ metadata:
     app.kubernetes.io/part-of: argocd
 data:
   server.insecure: "true"
-  otlp.address: "monitoring-alloy-receiver.monitoring.svc.cluster.local:4317"
+  otlp.address: "alloy.alloy.svc.cluster.local:4317"
   otlp.insecure: "true"
