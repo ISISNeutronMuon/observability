@@ -20,7 +20,7 @@ spec:
     filters:
       - type: RequestHeaderModifier
         requestHeaderModifier:
-          add:
+          set:
             - name: "X-Scope-OrgID"
               value: "FASE-test"
       - type: URLRewrite
