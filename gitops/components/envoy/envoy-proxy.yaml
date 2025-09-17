@@ -15,7 +15,7 @@ spec:
       samplingRate: 100
       provider:
         backendRefs:
-          - name: otel-collector
+          - name: monitoring-alloy-receiver
             namespace: monitoring
             port: 4317
         type: OpenTelemetry
