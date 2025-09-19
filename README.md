@@ -59,7 +59,11 @@ mimir-ruler-s3-isis-observability
 
 In order to enforce multi-tenancy properly, and limiting damage in-case of leakage of credentials we use basic_auth to automatically add the correct header.
 
-- Create a basic auth secret in Vault. 
+- Create a basic auth secret in Vault. This is a .htpasswd file and has to be done in SHA format using:
+```bash
+htpasswd -cbs .htpasswd username password
+```
+  - With this .htpasswd create the secret in vault with the username.
 - Create a new HTTPRoute for the endpoint they will be using. (A good example is observability-httproute.yml in Loki)
   - It needs to Rewrite the prefix, and add a unique identifier to the header so it can handle multi-tenancy.
 - Create a new SecurityPolicy that uses the auth secret from vault. (A good example is observability-basic-auth.yaml in Loki)
