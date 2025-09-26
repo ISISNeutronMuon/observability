@@ -5,7 +5,9 @@ metadata:
   namespace: loki
 spec:
   parentRefs:
-  - name: envoy-gateway
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: envoy-gateway
     namespace: envoy-gateway-system
     sectionName: https-loki
   hostnames:
@@ -13,10 +15,14 @@ spec:
   rules:
   - matches:
     - path:
+        type: PathPrefix
         value: /fia-prod
     backendRefs:
-    - name: loki-gateway
+    - group: ''
+      kind: Service
+      name: loki-gateway
       port: 80
+      weight: 1
     filters:
       - type: RequestHeaderModifier
         requestHeaderModifier:
