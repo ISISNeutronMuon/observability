@@ -5,7 +5,9 @@ metadata:
   namespace: tempo
 spec:
   parentRefs:
-  - name: envoy-gateway
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: envoy-gateway
     namespace: envoy-gateway-system
     sectionName: https-tempo
   hostnames:
@@ -15,7 +17,9 @@ spec:
     - path:
         value: /observability
     backendRefs:
-    - name: tempo-gateway
+    - group: ''
+      kind: Service
+      name: tempo-gateway
       port: 80
     filters:
       - type: RequestHeaderModifier
