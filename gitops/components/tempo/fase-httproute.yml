@@ -15,12 +15,14 @@ spec:
   rules:
   - matches:
     - path:
+        type: PathPrefix
         value: /fase
     backendRefs:
     - group: ''
       kind: Service
       name: tempo-gateway
       port: 80
+      weight: 1
     filters:
       - type: RequestHeaderModifier
         requestHeaderModifier:
