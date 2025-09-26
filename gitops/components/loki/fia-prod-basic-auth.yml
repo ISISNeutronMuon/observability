@@ -23,7 +23,7 @@ spec:
   vaultAuthRef: static-auth
 
   # Things to change:
-  mount: fia-prod
+  mount: observability
   path: loki/fia-prod-basic-auth
   destination:
     name: fia-prod-basic-auth
