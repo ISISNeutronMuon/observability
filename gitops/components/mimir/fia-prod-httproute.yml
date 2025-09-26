@@ -5,7 +5,9 @@ metadata:
   namespace: mimir
 spec:
   parentRefs:
-  - name: envoy-gateway
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: envoy-gateway
     namespace: envoy-gateway-system
     sectionName: https-mimir
   hostnames:
@@ -13,10 +15,14 @@ spec:
   rules:
   - matches:
     - path:
+        type: PathPrefix
         value: /fia-prod
     backendRefs:
-    - name: mimir-nginx
+    - group: ''
+      kind: Service
+      name: mimir-nginx
       port: 80
+      weight: 1
     filters:
       - type: RequestHeaderModifier
         requestHeaderModifier:
