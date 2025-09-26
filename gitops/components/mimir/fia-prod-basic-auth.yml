@@ -1,0 +1,31 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: fia-prod-basic-auth
+  namespace: mimir
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: mimir-fia-prod
+  basicAuth:
+    users:
+      name: "fia-prod-basic-auth"
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: basic-auth
+  namespace: mimir
+spec:
+  type: kv-v2
+  refreshAfter: 30s
+  vaultAuthRef: static-auth
+
+  # Things to change:
+  mount: fia-prod
+  path: mimir/fia-prod-basic-auth
+  destination:
+    name: fia-prod-basic-auth
+    overwrite: true
+    create: true

@@ -1,0 +1,30 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: loki-fia-prod
+  namespace: loki
+spec:
+  parentRefs:
+  - name: envoy-gateway
+    namespace: envoy-gateway-system
+    sectionName: https-loki
+  hostnames:
+    - "loki.observability.isis.rl.ac.uk"
+  rules:
+  - matches:
+    - path:
+        value: /fia-prod
+    backendRefs:
+    - name: loki-gateway
+      port: 80
+    filters:
+      - type: RequestHeaderModifier
+        requestHeaderModifier:
+          add:
+            - name: "X-Scope-OrgID"
+              value: "FIA-Prod"
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /
