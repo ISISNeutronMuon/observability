@@ -24,7 +24,7 @@ spec:
 
   # Things to change:
   mount: observability
-  path: loki/fia-prod-basic-auth
+  path: loki/fia-prod
   destination:
     name: fia-prod-basic-auth
     overwrite: true

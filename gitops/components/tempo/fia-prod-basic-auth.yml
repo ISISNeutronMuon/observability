@@ -24,7 +24,7 @@ spec:
 
   # Things to change:
   mount: observability
-  path: tempo/fia-prod-basic-auth
+  path: tempo/fia-prod
   destination:
     name: fia-prod-basic-auth
     overwrite: true
