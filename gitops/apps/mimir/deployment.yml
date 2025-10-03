@@ -40,12 +40,12 @@ spec:
               memory: 4Gi
         
         compactor:
-        resources:
-          limits:
-            memory: 2.1Gi
-          requests:
-            cpu: 1
-            memory: 1.5Gi
+          resources:
+            limits:
+              memory: 2.1Gi
+            requests:
+              cpu: 1
+              memory: 1.5Gi
           persistentVolume:
             size: 20Gi
         
