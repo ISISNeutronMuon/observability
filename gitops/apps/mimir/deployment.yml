@@ -19,6 +19,18 @@ spec:
             - secretRef:
                 name: s3-credentials
         
+        ingester:
+          persistentVolume:
+            size: 50Gi
+        
+        compactor:
+          persistentVolume:
+            size: 20Gi
+        
+        store_gateway:
+          persistentVolume:
+            size: 10Gi
+                
         alertmanager:
           enabled: false
         minio:
