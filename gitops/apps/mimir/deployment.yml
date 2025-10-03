@@ -20,14 +20,43 @@ spec:
                 name: s3-credentials
         
         ingester:
+          replicas: 3
+          resources:
+            limits:
+              memory: 12Gi
+            requests:
+              cpu: 3.5
+              memory: 8Gi
           persistentVolume:
             size: 50Gi
         
+        distributor:
+          replicas: 2
+          resources:
+            limits:
+              memory: 5.7Gi
+            requests:
+              cpu: 2
+              memory: 4Gi
+        
         compactor:
+        resources:
+          limits:
+            memory: 2.1Gi
+          requests:
+            cpu: 1
+            memory: 1.5Gi
           persistentVolume:
             size: 20Gi
         
         store_gateway:
+          replicas: 3
+          resources:
+            limits:
+              memory: 2.1Gi
+            requests:
+              cpu: 1
+              memory: 1.5Gi
           persistentVolume:
             size: 10Gi
                 
