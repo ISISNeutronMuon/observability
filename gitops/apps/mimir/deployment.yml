@@ -28,7 +28,7 @@ spec:
               cpu: 3.5
               memory: 8Gi
           persistentVolume:
-            size: 50Gi
+            size: 100Gi
         
         distributor:
           replicas: 2

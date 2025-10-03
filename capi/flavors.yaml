@@ -10,19 +10,16 @@ nodeGroups:
     machineCount: 5
 
   # The following node groups are optional and can be enabled by uncommenting them
-  # - name: md-l3-small
-  #   machineFlavor: l3.small
-  #   machineCount: 1
-  # - name: md-rtx4000
-  #   machineFlavor: g-rtx4000.x1
-  #   machineCount: 1
+  - name: big-workers
+    machineFlavor: l3.xsmall
+    machineCount: 2
 
 # Defaults for node groups
 nodeGroupDefaults:
   # Indicates if the node group should be autoscaled
   autoscale: false
   # The flavor to use for machines in the node group
-  machineFlavor: l3.micro
+  machineFlavor: l3.tiny
 
   healthCheck:
     # Indicates if the machine health check should be enabled
