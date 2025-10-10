@@ -1,0 +1,31 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: digital-muon-basic-auth
+  namespace: loki
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: loki-digital-muon
+  basicAuth:
+    users:
+      name: "digital-muon-basic-auth"
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: digital-muon-basic-auth
+  namespace: loki
+spec:
+  type: kv-v2
+  refreshAfter: 30s
+  vaultAuthRef: static-auth
+
+  # Things to change:
+  mount: observability
+  path: loki/digital-muon
+  destination:
+    name: digital-muon-basic-auth
+    overwrite: true
+    create: true

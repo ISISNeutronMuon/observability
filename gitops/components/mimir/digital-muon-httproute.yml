@@ -1,0 +1,36 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: mimir-digital-muon
+  namespace: mimir
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: envoy-gateway
+    namespace: envoy-gateway-system
+    sectionName: https-mimir
+  hostnames:
+    - "mimir.observability.isis.rl.ac.uk"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /digital-muon
+    backendRefs:
+    - group: ''
+      kind: Service
+      name: mimir-nginx
+      port: 80
+      weight: 1
+    filters:
+      - type: RequestHeaderModifier
+        requestHeaderModifier:
+          set:
+            - name: "X-Scope-OrgID"
+              value: "digital-muon"
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /
