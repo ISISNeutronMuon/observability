@@ -29,6 +29,9 @@ spec:
                 index:
                   prefix: loki_index_
                   period: 24h
+          limits_config:
+            max_query_lookback: 720h # 28 days
+            retention_period: 720h   # 28 days
           storage:
             bucketNames:
               chunks: loki-s3-isis-observability
