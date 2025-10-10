@@ -1,0 +1,1 @@
+Check out this repository's deployment of the k8s-monitoring stack
