@@ -5,6 +5,9 @@ metadata:
   namespace: s3-exporter
   labels:
     app: s3-exporter
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8000"
 spec:
   selector:
     app: s3-exporter
