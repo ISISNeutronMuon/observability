@@ -106,6 +106,8 @@ profiling:
 
 prometheusOperatorObjects:
   enabled: true
+  crds:
+    deploy: true
   probes:
     namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
   podMonitors:
