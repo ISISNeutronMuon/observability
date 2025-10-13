@@ -44,10 +44,10 @@ destinations:
 
 annotationAutodiscovery:
   enabled: true
-  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
 
 applicationObservability:
-  enabled: true
+  enabled: false
   receivers:
     otlp:
       grpc:
@@ -57,14 +57,14 @@ applicationObservability:
   metrics:
     filters:
       metric:
-        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system$"))
+        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system|s3-exporter$"))
       logs:
-        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system$"))
+        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system|s3-exporter$"))
       traces:
-        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system$"))
+        - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system|s3-exporter$"))
 
 autoInstrumentation:
-  enabled: true
+  enabled: false
   beyla:
     config:
       data:
@@ -77,40 +77,41 @@ autoInstrumentation:
             - k8s_namespace: vault-op
             - k8s_namespace: argocd
             - k8s_namespace: envoy-gateway-system
+            - k8s_namespace: s3-exporter
 
 clusterEvents:
   enabled: true
-  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
 
 clusterMetrics:
   enabled: true
   cadvisor:
     metricsTuning:
-      includeNamespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+      includeNamespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
   kube-state-metrics:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
 
 podLogs:
   enabled: true
-  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+  namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
 
 profiling:
   enabled: false
   ebpf:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
   java:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
   pprof:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
 
 prometheusOperatorObjects:
   enabled: true
   probes:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
   podMonitors:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
   serviceMonitors:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
 
 alloy-metrics:
   enabled: true

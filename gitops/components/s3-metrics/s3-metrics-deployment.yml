@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3-exporter
+  namespace: s3-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: s3-exporter
+  template:
+    metadata:
+      labels:
+        app: s3-exporter
+    spec:
+      containers:
+      - name: s3-exporter
+        image: ghcr.io/isisneutronmuon/s3-exporter@sha256:f76b04f0f1a5430a01bb16ca89c6039828a13196498a19fa65658dfc354297ad
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: s3-credentials
+              key: S3_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: s3-credentials
+              key: S3_SECRET_ACCESS_KEY
+        - name: S3_BUCKETS
+          value: "loki-s3-isis-observability,loki-ruler-s3-isis-observability,tempo-s3-isis-observability,mimir-s3-isis-observability,mimir-ruler-s3-isis-observability"
+        - name: S3_ENDPOINT
+          value: "https://s3.echo.stfc.ac.uk"
+        - name: SCRAPE_INTERVAL
+          value: "180"
+        ports:
+        - containerPort: 8000
+          name: metrics
