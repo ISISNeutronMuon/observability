@@ -15,7 +15,7 @@ spec:
   podMetricsEndpoints:
     - port: metrics
       path: /metrics
-      interval: 15m
+      interval: 3m
       scrapeTimeout: 60s
       scheme: http
       relabelings: []
