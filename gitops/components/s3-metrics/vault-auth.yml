@@ -1,0 +1,17 @@
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: static-auth
+  namespace: s3-exporter
+spec:
+  method: kubernetes
+  mount: observability
+  allowedNamespaces:
+    - "*"
+  kubernetes:
+    role: cluster
+    serviceAccount: vault-op
+    audiences:
+      - vault
+      - https://kubernetes.default.svc.cluster.local
