@@ -125,7 +125,7 @@ alloy-logs:
   enabled: true
 
 alloy-receiver:
-  enabled: true
+  enabled: false
   alloy:
     extraPorts:
       - name: otlp-grpc
