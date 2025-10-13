@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: s3-metrics-exporter
+  namespace: s3-exporter
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: s3-exporter
+  namespaceSelector:
+    matchNames:
+      - s3-exporter
+  podMetricsEndpoints:
+    - port: metrics
+      path: /metrics
+      interval: 15m
+      scrapeTimeout: 60s
+      scheme: http
+      relabelings: []
