@@ -101,6 +101,8 @@ spec:
 
         # Configure compactor
         compactor:
+          compaction:
+            block_retention: 7d  # Default 7 day retention
           extraArgs:
             - '-config.expand-env=true'
           extraEnv:

@@ -52,7 +52,8 @@ spec:
           limits_config:
             allow_structured_metadata: true
             volume_enabled: true
-            retention_period: 2160h  # 3 Months default
+            max_line_size_truncate: true
+            retention_period: 1440h  # 60 days default
 
         deploymentMode: SimpleScalable
 

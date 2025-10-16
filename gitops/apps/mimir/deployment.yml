@@ -86,6 +86,11 @@ spec:
               max_global_series_per_user: 1000000
               ingestion_rate: 50000
               ingestion_burst_size: 500000
+              compactor_blocks_retention_period: 1y # Retain data for up to 1 year
+# Overrides example:
+#            overrides:
+#              FIA-Prod:
+#                retention_period: 1y
   destination:
     namespace: mimir
     server: https://kubernetes.default.svc
