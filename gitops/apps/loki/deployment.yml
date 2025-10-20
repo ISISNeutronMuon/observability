@@ -109,12 +109,7 @@ spec:
             targetMemoryUtilizationPercentage: 60
           maxUnavailable: 1
         queryScheduler:
-          autoscaling:
-            enabled: true
-            minReplicas: 2
-            maxReplicas: 6
-            targetCPUUtilizationPercentage: 60
-            targetMemoryUtilizationPercentage: 60
+          replicas: 2
         distributor:
           autoscaling:
             enabled: true
