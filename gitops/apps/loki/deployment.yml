@@ -58,25 +58,102 @@ spec:
         deploymentMode: Distributed
         
         ingester:
-          replicas: 3 # To ensure data durability with replication
+          autoscaling:
+            enabled: true
+            minReplicas: 2
+            maxReplicas: 6
+            targetCPUUtilizationPercentage: 60
+            targetMemoryUtilizationPercentage: 60
           zoneAwareReplication:
              enabled: false
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY
         querier:
-          replicas: 3 # Improve query performance via parallelism
+          autoscaling:
+            enabled: true
+            minReplicas: 2
+            maxReplicas: 6
+            targetCPUUtilizationPercentage: 60
+            targetMemoryUtilizationPercentage: 60
           maxUnavailable: 2
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY
         queryFrontend:
-          replicas: 2
+          autoscaling:
+            enabled: true
+            minReplicas: 2
+            maxReplicas: 6
+            targetCPUUtilizationPercentage: 60
+            targetMemoryUtilizationPercentage: 60
           maxUnavailable: 1
         queryScheduler:
-          replicas: 2
+          autoscaling:
+            enabled: true
+            minReplicas: 2
+            maxReplicas: 6
+            targetCPUUtilizationPercentage: 60
+            targetMemoryUtilizationPercentage: 60
         distributor:
-          replicas: 3 
+          autoscaling:
+            enabled: true
+            minReplicas: 2
+            maxReplicas: 6
+            targetCPUUtilizationPercentage: 60
+            targetMemoryUtilizationPercentage: 60
           maxUnavailable: 2
         compactor:
           replicas: 1
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY
         indexGateway:
           replicas: 2
           maxUnavailable: 1
+          extraArgs:
+            - '-config.expand-env=true'
+          extraEnv:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY_ID
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_ACCESS_KEY
         
         bloomPlanner:
           replicas: 0
@@ -84,17 +161,14 @@ spec:
           replicas: 0
         bloomGateway:
           replicas: 0
-        
         backend:
            replicas: 0
         read:
            replicas: 0
         write:
            replicas: 0
-        
         singleBinary:
            replicas: 0
-        
         minio:
           enabled: false
 
