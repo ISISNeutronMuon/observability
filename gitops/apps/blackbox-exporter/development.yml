@@ -20,7 +20,7 @@ spec:
                 method: GET
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring-system
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true
