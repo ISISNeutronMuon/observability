@@ -64,7 +64,7 @@ applicationObservability:
         - not(IsMatch(resource.attributes["k8s.namespace.name"], "^loki|mimir|tempo|grafana|vault-op|argocd|envoy-gateway-system|s3-exporter$"))
 
 autoInstrumentation:
-  enabled: true
+  enabled: false
   beyla:
     config:
       data:
@@ -109,11 +109,11 @@ prometheusOperatorObjects:
   crds:
     deploy: true
   probes:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter, monitoring]
   podMonitors:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter, monitoring]
   serviceMonitors:
-    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter]
+    namespaces: [loki, mimir, tempo, grafana, vault-op, argocd, envoy-gateway-system, s3-exporter, monitoring]
 
 alloy-metrics:
   enabled: true
