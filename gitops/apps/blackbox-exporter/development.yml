@@ -19,7 +19,7 @@ spec:
               http:
                 method: GET
   destination:
-    name: prod
+    server: https://kubernetes.default.svc
     namespace: monitoring-system
   syncPolicy:
     automated:
