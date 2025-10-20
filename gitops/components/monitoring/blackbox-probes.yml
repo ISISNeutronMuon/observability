@@ -10,8 +10,5 @@ spec:
   targets:
     staticConfig:
       static:
-        - https://mimir.observability.isis.rl.ac.uk/observability
-        - https://tempo.observability.isis.rl.ac.uk/observability
-        - https://loki.observability.isis.rl.ac.uk/observability
         - https://grafana.observability.isis.rl.ac.uk
         - https://observability.isis.rl.ac.uk
