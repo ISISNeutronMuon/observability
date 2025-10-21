@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 9.4.4
+    targetRevision: 10.1.2
     chart: grafana
     helm:
       values: |
@@ -18,6 +18,10 @@ spec:
         grafana.ini:
           smtp:
             enabled: true
+            host: ob-mgw.stfc.ac.uk:26
+            skip_verify: true
+            from_name: ISIS Observability
+            from_address: alerts@grafana.observability.isis.rl.ac.uk
           server:
             root_url: https://grafana.observability.isis.rl.ac.uk/
           database:
