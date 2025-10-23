@@ -170,6 +170,10 @@ spec:
         gateway:
           enabled: true
 
+        monitoring:
+          serviceMonitor:
+            enabled: true
+  
         lokiCanary:
           extraArgs:
             - -pass=$(LOKI_PASS)
