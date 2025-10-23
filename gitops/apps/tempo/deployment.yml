@@ -14,6 +14,9 @@ spec:
     chart: tempo-distributed
     helm:
       values: |
+        monitoring:
+          serviceMonitor:
+            enabled: true
         global:
           clusterDomain: 'cluster.local'
         reportingEnabled: false
