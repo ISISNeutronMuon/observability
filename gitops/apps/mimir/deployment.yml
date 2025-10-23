@@ -62,8 +62,14 @@ spec:
                 
         alertmanager:
           enabled: false
+
         minio:
           enabled: false
+
+        metaMonitoring:
+          serviceMonitor:
+            enabled: true
+            clusterLabel: observability
 
         mimir:
           structuredConfig:
