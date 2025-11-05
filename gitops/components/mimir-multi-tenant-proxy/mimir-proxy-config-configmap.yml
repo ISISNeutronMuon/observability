@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mimir-proxy-config
+  namespace: observability
+data:
+  main.py: |
+    from fastapi import FastAPI, Request
+    import httpx
+    
+    app = FastAPI()
+    MIMIR_URL = os.getenv("MIMIR_URL", "http://mimir:9009")
+    
+    @app.get("/api/v1/query")
+    async def query(request: Request):
+        query_param = request.query_params.get("query")
+        if not query_param:
+            return {"status": "error", "message": "query parameter required"}
+    
+        # Read X-Scope-OrgID header; treat it as | separated list
+        x_scope_orgid = request.headers.get("X-Scope-OrgID")
+        if not x_scope_orgid:
+            return {"status": "error", "message": "X-Scope-OrgID header required"}
+    
+        tenant_list = [t.strip() for t in x_scope_orgid.split("|")]
+        results = []
+    
+        async with httpx.AsyncClient() as client:
+            for tenant in tenant_list:
+                resp = await client.get(
+                    f"{MIMIR_URL}/api/v1/query",
+                    params={"query": query_param},
+                    headers={"X-Scope-OrgID": tenant},
+                    timeout=30
+                )
+                if resp.status_code == 200:
+                    data = resp.json()
+                    for r in data.get("data", {}).get("result", []):
+                        r["metric"]["tenant"] = tenant
+                    results.extend(data.get("data", {}).get("result", []))
+    
+        return {"status": "success", "data": {"result": results}}
+
