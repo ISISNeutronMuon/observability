@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mimir-proxy-config
-  namespace: observability
+  namespace: monitoring
 data:
   main.py: |
     from fastapi import FastAPI, Request
