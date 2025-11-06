@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: mimir-multi-tenant-proxy
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-1000"
