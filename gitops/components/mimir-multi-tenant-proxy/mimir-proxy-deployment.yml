@@ -19,7 +19,7 @@ spec:
         command: ["sh", "-c"]
         args:
           - pip install fastapi uvicorn httpx && \
-            python -m uvicorn main:app --host 0.0.0.0 --port 8080
+            python3 -m uvicorn main:app --host 0.0.0.0 --port 8080
         ports:
         - containerPort: 8080
         env:
