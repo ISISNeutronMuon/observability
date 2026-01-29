@@ -10,11 +10,13 @@ spec:
   project: default
   source:
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 10.1.2
+    targetRevision: 10.5.14
     chart: grafana
     helm:
       values: |
         replicas: 3
+        plugins:
+          - yesoreyeram-infinity-datasource
         grafana.ini:
           smtp:
             enabled: true
