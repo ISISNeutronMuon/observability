@@ -9,4 +9,5 @@ spec:
       envoyDeployment:
         replicas: 3
       envoyService:
+        externalTrafficPolicy: Cluster
         loadBalancerIP: 130.246.81.219
