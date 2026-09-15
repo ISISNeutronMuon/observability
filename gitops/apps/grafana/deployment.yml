@@ -28,6 +28,11 @@ spec:
             root_url: https://grafana.observability.isis.rl.ac.uk/
           database:
             type: postgres
+            host: postgres-cluster-rw.postgres-system.svc.cluster.local:5432
+            name: grafana
+            user: grafana
+            password: "$__env{GF_DATABASE_PASSWORD}"
+            ssl_mode: disable
             wal: true
         serviceMonitor:
           enabled: false # Temporarily disabled until Alloy is deployed correctly.
@@ -44,7 +49,11 @@ spec:
           existingSecret: grafana-creds
           userKey: username
           passwordKey: password
-        envFromSecret: grafana-creds
+        envValueFrom:
+          GF_DATABASE_PASSWORD:
+            secretKeyRef:
+              name: grafana-db-creds
+              key: password
   destination:
     namespace: grafana
     server: https://kubernetes.default.svc
