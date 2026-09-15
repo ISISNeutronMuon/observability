@@ -52,8 +52,8 @@ spec:
         envValueFrom:
           GF_DATABASE_PASSWORD:
             secretKeyRef:
-              name: grafana-db-creds
-              key: password
+              name: grafana-creds
+              key: GF_DATABASE_PASSWORD
   destination:
     namespace: grafana
     server: https://kubernetes.default.svc
