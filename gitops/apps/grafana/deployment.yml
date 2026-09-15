@@ -14,7 +14,7 @@ spec:
     chart: grafana
     helm:
       values: |
-        replicas: 3
+        replicas: 1
         plugins:
           - yesoreyeram-infinity-datasource
         grafana.ini:
