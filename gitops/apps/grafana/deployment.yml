@@ -18,6 +18,10 @@ spec:
         plugins:
           - yesoreyeram-infinity-datasource
         grafana.ini:
+          plugins:                                                                                                                                                                         
+            preinstall_auto_update: false                                                                                                                                                  
+          analytics:                                                                                                                                                                       
+            check_for_plugin_updates: false    
           smtp:
             enabled: true
             host: ob-mgw.stfc.ac.uk:26
